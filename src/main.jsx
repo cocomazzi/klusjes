@@ -501,13 +501,24 @@ function App() {
   function step(n) {
     setDate(addDays(date, n * (view === "Week" ? 7 : 1)));
   }
+  function goHome() {
+    setSection("Kalender");
+    setView("Dag");
+    setDate(dateKey());
+  }
   return (
     <div className="app">
       <header className="brand">
-        <div>
-          <Home size={29} />
-          <h1>Klusjes</h1>
-        </div>
+        <h1>
+          <button
+            className="brand-home"
+            aria-label="Klusjes · Naar vandaag"
+            onClick={goHome}
+          >
+            <Home size={29} aria-hidden="true" />
+            <span>Klusjes</span>
+          </button>
+        </h1>
         <span>Thuis</span>
       </header>
       <main>

@@ -63,10 +63,14 @@ button:hover {
   justify-content: space-between;
   padding: 35px 28px 26px;
 }
-.brand > div {
+.brand-home {
   display: flex;
   gap: 12px;
   align-items: center;
+  padding: 0;
+  border-radius: 8px;
+  font: inherit;
+  letter-spacing: inherit;
 }
 h1 {
   font-size: 28px;
@@ -141,6 +145,10 @@ p {
 .datebar .today {
   font-size: 12px;
   padding: 0 10px;
+  background: var(--pink);
+  border-color: #dfbfc1;
+  color: #785254;
+  font-weight: 600;
 }
 .weekstrip {
   display: grid;
