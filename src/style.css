@@ -1,0 +1,602 @@
+@import "tailwindcss";
+:root {
+  font-family:
+    Inter,
+    ui-sans-serif,
+    -apple-system,
+    BlinkMacSystemFont,
+    "Segoe UI",
+    sans-serif;
+  color: #353b35;
+  background: #f1efec;
+  font-synthesis: none;
+  --paper: #fbfaf8;
+  --pink: #f1dedf;
+  --sage: #dee5d9;
+  --muted: #82847e;
+}
+* {
+  box-sizing: border-box;
+}
+body {
+  margin: 0;
+}
+button,
+input,
+select {
+  font: inherit;
+}
+button {
+  cursor: pointer;
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  gap: 10px;
+  border: 0;
+  background: none;
+  color: inherit;
+}
+button:disabled {
+  opacity: 0.5;
+  cursor: wait;
+}
+button:focus-visible,
+input:focus-visible,
+select:focus-visible {
+  outline: 3px solid #9b706f;
+  outline-offset: 3px;
+}
+button:hover {
+  filter: brightness(0.97);
+}
+.app {
+  max-width: 620px;
+  min-height: 100dvh;
+  margin: auto;
+  background: var(--paper);
+  display: flex;
+  flex-direction: column;
+}
+.brand {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  padding: 35px 28px 26px;
+}
+.brand > div {
+  display: flex;
+  gap: 12px;
+  align-items: center;
+}
+h1 {
+  font-size: 28px;
+  letter-spacing: -1px;
+  font-weight: 700;
+  margin: 0;
+}
+.brand > span {
+  font-size: 15px;
+}
+.app main {
+  padding: 0 24px;
+  flex: 1;
+  display: flex;
+  flex-direction: column;
+}
+h2 {
+  font-weight: 650;
+  font-size: 24px;
+  letter-spacing: -0.65px;
+  margin: 0;
+}
+h3 {
+  font-weight: 600;
+  font-size: 17px;
+  margin: 8px 0;
+}
+p {
+  line-height: 1.65;
+  margin: 6px 0 18px;
+}
+.muted,
+.settings p {
+  color: #777d74;
+  font-size: 14px;
+}
+.segmented {
+  display: flex;
+  background: #efedea;
+  border-radius: 22px;
+  padding: 3px;
+}
+.segmented button {
+  flex: 1;
+  padding: 9px;
+  border-radius: 20px;
+  font-size: 16px;
+  font-weight: 550;
+}
+.selected {
+  background: var(--pink) !important;
+}
+.datebar {
+  display: flex;
+  align-items: center;
+  gap: 9px;
+  margin: 27px 0 20px;
+}
+.datebar h2 {
+  flex: 1;
+  text-align: center;
+  text-transform: capitalize;
+  font-size: 17px;
+  letter-spacing: -0.3px;
+}
+.datebar > button {
+  border: 1px solid #dfdcd7;
+  border-radius: 10px;
+  min-width: 36px;
+  height: 38px;
+}
+.datebar .today {
+  font-size: 12px;
+  padding: 0 10px;
+}
+.weekstrip {
+  display: grid;
+  grid-template-columns: repeat(7, 1fr);
+  gap: 6px;
+}
+.weekstrip button {
+  position: relative;
+  flex-direction: column;
+  gap: 3px;
+  border: 1px solid #e5e1dc;
+  border-radius: 12px;
+  padding: 9px 0 12px;
+  font-size: 13px;
+}
+.weekstrip strong {
+  font-weight: 600;
+  font-size: 17px;
+}
+.weekstrip i {
+  width: 3px;
+  height: 3px;
+  background: #7e695f;
+  border-radius: 50%;
+  position: absolute;
+  bottom: 5px;
+}
+.day-heading {
+  margin: 33px 0 24px;
+}
+.day-heading h2:first-letter,
+.week-title:first-letter {
+  text-transform: uppercase;
+}
+.day-heading p {
+  color: var(--muted);
+  font-size: 14px;
+  margin: 5px 0;
+}
+.calendar-content {
+  touch-action: pan-y;
+  flex: 1;
+}
+.chores {
+  display: flex;
+  flex-direction: column;
+  gap: 11px;
+}
+.chore {
+  display: flex;
+  gap: 14px;
+  align-items: center;
+  border: 1px solid #e1dcd5;
+  border-radius: 12px;
+  padding: 13px 13px;
+  min-height: 62px;
+}
+.checkbox {
+  width: 25px;
+  height: 25px;
+  flex-shrink: 0;
+  border: 1.5px solid #626c60;
+  border-radius: 7px;
+  padding: 0;
+}
+.chore-name {
+  flex: 1;
+  flex-direction: column;
+  align-items: flex-start;
+  text-align: left;
+  font-size: 16px;
+  gap: 5px;
+  overflow-wrap: anywhere;
+  min-width: 0;
+}
+.chore-name small {
+  font-size: 10px;
+  color: #8a8b81;
+  display: flex;
+  gap: 5px;
+  align-items: center;
+}
+.more {
+  padding: 5px;
+  color: #9c9d93;
+}
+.done {
+  background: var(--sage);
+  border-color: var(--sage);
+}
+.done .checkbox {
+  background: #819780;
+  border-color: #819780;
+  color: white;
+}
+.done .chore-name > span {
+  text-decoration: line-through;
+}
+.primary {
+  background: var(--pink);
+  border-radius: 12px;
+  padding: 16px;
+  font-weight: 550;
+  font-size: 16px;
+  min-height: 52px;
+}
+.add {
+  margin: 40px 0 18px;
+  width: 100%;
+}
+.empty {
+  padding: 30px 10px;
+  text-align: center;
+  color: #91958b;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+.empty h3 {
+  font-size: 16px;
+  color: #626d5e;
+  margin-top: 17px;
+}
+.empty p {
+  font-size: 13px;
+}
+.app footer {
+  position: sticky;
+  bottom: 0;
+  background: var(--paper);
+  padding-bottom: env(safe-area-inset-bottom);
+}
+.sync {
+  display: flex;
+  justify-content: center;
+  gap: 6px;
+  align-items: center;
+  font-size: 10px;
+  color: #95978d;
+  padding: 10px;
+}
+.sync > span {
+  width: 5px;
+  height: 5px;
+  background: #b0b2a6;
+  border-radius: 50%;
+}
+.sync > .live {
+  background: #819780;
+}
+nav {
+  display: flex;
+  justify-content: space-around;
+  padding: 12px 16px;
+  border-top: 1px solid #eae6e0;
+}
+nav button {
+  flex-direction: column;
+  gap: 6px;
+  font-size: 11px;
+  border-radius: 16px;
+  padding: 10px 14px;
+  min-width: 90px;
+}
+input,
+select {
+  background: transparent;
+  border: 1px solid #d4d2ca;
+  border-radius: 10px;
+  padding: 12px;
+  width: 100%;
+  min-height: 46px;
+  color: inherit;
+  font-size: 15px;
+}
+label {
+  display: block;
+  font-size: 13px;
+  font-weight: 550;
+  margin: 17px 0 0;
+}
+label > input,
+label > select {
+  display: block;
+  margin-top: 6px;
+  font-weight: 400;
+}
+.page-heading {
+  margin: 8px 0 20px;
+}
+.page-heading p {
+  font-size: 14px;
+  color: var(--muted);
+  margin-top: 8px;
+}
+.library {
+  margin: 20px 0;
+  flex: 1;
+}
+.library > button {
+  display: flex;
+  width: 100%;
+  justify-content: space-between;
+  text-align: left;
+  padding: 20px 0;
+  border-bottom: 1px solid #e5e2dc;
+}
+.library > button div {
+  display: flex;
+  flex-direction: column;
+  gap: 7px;
+}
+.library strong {
+  font-weight: 550;
+}
+.library small {
+  font-size: 12px;
+  color: var(--muted);
+}
+.settings {
+  padding: 12px 0 30px;
+}
+.settings form {
+  margin-bottom: 30px;
+}
+.settings .primary {
+  width: 100%;
+  margin-top: 20px;
+}
+.notice {
+  background: #f0eeea;
+  padding: 18px;
+  border-radius: 12px;
+  margin: 20px 0;
+}
+.notice p {
+  margin-bottom: 0;
+}
+.secondary {
+  border: 1px solid #d9d6cf;
+  border-radius: 10px;
+  padding: 12px 20px;
+}
+hr {
+  border: 0;
+  border-top: 1px solid #e1ded8;
+  margin: 30px 0;
+}
+.overlay {
+  position: fixed;
+  inset: 0;
+  background: #282d2859;
+  z-index: 10;
+  display: flex;
+  align-items: flex-end;
+  justify-content: center;
+}
+.sheet {
+  background: var(--paper);
+  border-radius: 26px 26px 0 0;
+  width: 100%;
+  max-width: 620px;
+  max-height: 92dvh;
+  overflow: auto;
+  padding: 12px 24px 28px;
+  box-shadow: 0 -8px 40px #0000000a;
+}
+.handle {
+  width: 40px;
+  height: 5px;
+  background: #d4d1cc;
+  border-radius: 9px;
+  margin: 0 auto 17px;
+}
+.sheet header {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
+.sheet header button {
+  padding: 8px;
+}
+.sheet .primary {
+  margin-top: 25px;
+}
+.sheet form {
+  position: relative;
+}
+.suggestions {
+  background: #fffefa;
+  border: 1px solid #e0dcd5;
+  border-radius: 10px;
+  padding: 5px;
+  margin-top: 5px;
+  max-height: 190px;
+  overflow: auto;
+}
+.suggestions button {
+  padding: 10px 9px;
+  width: 100%;
+  justify-content: flex-start;
+  text-align: left;
+  font-size: 14px;
+  border-radius: 6px;
+}
+.suggestions button:hover {
+  background: var(--pink);
+}
+.formrow {
+  display: flex;
+  gap: 12px;
+}
+.formrow label {
+  flex: 1;
+}
+fieldset {
+  border: 0;
+  padding: 0;
+  margin-top: 18px;
+}
+legend {
+  font-size: 13px;
+  margin-bottom: 9px;
+}
+.weekday-choices {
+  display: flex;
+  gap: 6px;
+}
+.weekday-choices button {
+  flex: 1;
+  padding: 10px 0;
+  border: 1px solid #dedbd5;
+  border-radius: 9px;
+  font-size: 13px;
+}
+.delete {
+  width: 100%;
+  color: #9b6262;
+  padding: 15px;
+  margin-top: 8px;
+  font-size: 14px;
+}
+.error {
+  color: #a04747;
+  background: #f8e9e5;
+  padding: 12px;
+  border-radius: 10px;
+  font-size: 13px;
+}
+.weekview > section {
+  margin-top: 24px;
+}
+.week-title {
+  display: flex;
+  justify-content: space-between;
+  width: 100%;
+  font-weight: 600;
+  font-size: 15px;
+  margin-bottom: 12px;
+  text-align: left;
+  text-transform: capitalize;
+}
+.weekview .empty {
+  padding: 8px;
+}
+.weekview .empty svg,
+.weekview .empty h3 {
+  display: none;
+}
+.weekview .empty p {
+  margin: 0;
+}
+.weekview .chore-name {
+  font-size: 14px;
+}
+.weekview .chore {
+  min-height: 52px;
+  padding: 11px;
+}
+.weekview .chore-name small {
+  display: none;
+}
+@media (min-width: 750px) {
+  .app {
+    margin: 32px auto;
+    min-height: calc(100dvh - 64px);
+    border: 1px solid #e8e3dd;
+    border-radius: 24px;
+    overflow: hidden;
+    box-shadow: 0 10px 60px #38392a08;
+  }
+  .brand {
+    padding: 35px 40px 26px;
+  }
+  .app main {
+    padding: 0 40px;
+  }
+  .sheet {
+    align-self: center;
+    border-radius: 24px;
+    max-width: 510px;
+  }
+  .handle {
+    display: none;
+  }
+  .overlay {
+    align-items: center;
+    padding: 24px;
+  }
+  .sheet header {
+    margin-top: 10px;
+  }
+  .app footer {
+    position: static;
+  }
+  .weekview {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 20px;
+  }
+  .weekview .chore {
+    gap: 9px;
+  }
+  .weekview .more {
+    display: none;
+  }
+}
+@media (prefers-reduced-motion: no-preference) {
+  button {
+    transition:
+      background 0.15s,
+      opacity 0.15s;
+  }
+  .sheet {
+    animation: slide 0.2s ease-out;
+  }
+  @keyframes slide {
+    from {
+      transform: translateY(24px);
+      opacity: 0.4;
+    }
+    to {
+      transform: none;
+      opacity: 1;
+    }
+  }
+}
+.app footer {
+  position: static;
+}
+.checkbox {
+  background: transparent;
+}
+.checkbox:hover {
+  background: #ebece5;
+}
+.done .checkbox:hover {
+  background: #718a70;
+}
